@@ -14,7 +14,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="Godot Gravity Tutorial Demo"
+config/name="熊猫卫士：逆转协议"
 run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.7")
 
@@ -26,7 +26,10 @@ LevelRouter="*res://scripts/level_router.gd"
 
 window/size/viewport_width=1080
 window/size/viewport_height=1080
-window/stretch/mode="canvas_items"
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [input]
 
@@ -55,8 +58,4 @@ space_rotate={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-environment/defaults/default_clear_color=Color(0.08, 0.09, 0.11, 1)
-[autoload]
-
-LevelRouter="*res://scripts/level_router.gd"
-
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
