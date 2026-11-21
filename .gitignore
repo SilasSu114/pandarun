@@ -1,0 +1,19 @@
+.godot/
+.godot-*/
+.godot-*.log
+*.log
+*.tmp
+tmp/
+logs/
+
+# OS/editor noise
+Thumbs.db
+Desktop.ini
+.DS_Store
+.idea/
+.vs/
+.vscode/
+
+# Old demo workspaces are intentionally excluded from the formal repo
+../projects/godot-gravity-tutorial-demo/
+../projects/godot-gravity-tutorial-demo-(4.3)/

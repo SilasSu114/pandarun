@@ -1,0 +1,243 @@
+[gd_scene load_steps=13 format=3]
+
+[ext_resource type="Script" path="res://scripts/level_3.gd" id="1_level_3"]
+[ext_resource type="Script" path="res://scripts/gravity_manager.gd" id="2_gravity_manager"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="3_player"]
+[ext_resource type="Script" path="res://scripts/push_box.gd" id="4_push_box"]
+[ext_resource type="PackedScene" path="res://scenes/switch_plate.tscn" id="5_switch_plate"]
+[ext_resource type="PackedScene" path="res://scenes/gate.tscn" id="6_gate"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_horizontal_wall"]
+size = Vector2(1080, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vertical_wall"]
+size = Vector2(64, 1080)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_push_box"]
+size = Vector2(72, 72)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_box_shelf"]
+size = Vector2(112, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_switch_platform"]
+size = Vector2(144, 64)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_push_box"]
+friction = 0.3
+bounce = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit"]
+size = Vector2(96, 96)
+
+[node name="Level3" type="Node2D"]
+script = ExtResource("1_level_3")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1080.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0.08, 0.09, 0.11, 1)
+
+[node name="BottomWall" type="StaticBody2D" parent="."]
+position = Vector2(0, 1016)
+
+[node name="Visual" type="ColorRect" parent="BottomWall"]
+offset_right = 1080.0
+offset_bottom = 64.0
+color = Color(0.24, 0.27, 0.32, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall"]
+position = Vector2(540, 32)
+shape = SubResource("RectangleShape2D_horizontal_wall")
+
+[node name="TopWall" type="StaticBody2D" parent="."]
+
+[node name="Visual" type="ColorRect" parent="TopWall"]
+offset_right = 1080.0
+offset_bottom = 64.0
+color = Color(0.24, 0.27, 0.32, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall"]
+position = Vector2(540, 32)
+shape = SubResource("RectangleShape2D_horizontal_wall")
+
+[node name="LeftWall" type="StaticBody2D" parent="."]
+
+[node name="Visual" type="ColorRect" parent="LeftWall"]
+offset_right = 64.0
+offset_bottom = 1080.0
+color = Color(0.24, 0.27, 0.32, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
+position = Vector2(32, 540)
+shape = SubResource("RectangleShape2D_vertical_wall")
+
+[node name="RightWall" type="StaticBody2D" parent="."]
+position = Vector2(1016, 0)
+
+[node name="Visual" type="ColorRect" parent="RightWall"]
+offset_right = 64.0
+offset_bottom = 1080.0
+color = Color(0.24, 0.27, 0.32, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
+position = Vector2(32, 540)
+shape = SubResource("RectangleShape2D_vertical_wall")
+
+[node name="Gate1" parent="." instance=ExtResource("6_gate")]
+position = Vector2(416, 540)
+
+[node name="Gate2" parent="." instance=ExtResource("6_gate")]
+position = Vector2(640, 540)
+
+[node name="Gate3" parent="." instance=ExtResource("6_gate")]
+position = Vector2(824, 540)
+
+[node name="Box1Shelf" type="StaticBody2D" parent="."]
+position = Vector2(480, 276)
+
+[node name="Visual" type="ColorRect" parent="Box1Shelf"]
+offset_left = -56.0
+offset_top = -32.0
+offset_right = 56.0
+offset_bottom = 32.0
+color = Color(0.2, 0.24, 0.28, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box1Shelf"]
+shape = SubResource("RectangleShape2D_box_shelf")
+
+[node name="Box2Shelf" type="StaticBody2D" parent="."]
+position = Vector2(880, 276)
+
+[node name="Visual" type="ColorRect" parent="Box2Shelf"]
+offset_left = -56.0
+offset_top = -32.0
+offset_right = 56.0
+offset_bottom = 32.0
+color = Color(0.2, 0.24, 0.28, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box2Shelf"]
+shape = SubResource("RectangleShape2D_box_shelf")
+
+[node name="Switch3Platform" type="StaticBody2D" parent="."]
+position = Vector2(728, 952)
+
+[node name="Visual" type="ColorRect" parent="Switch3Platform"]
+offset_left = -72.0
+offset_top = -32.0
+offset_right = 72.0
+offset_bottom = 32.0
+color = Color(0.2, 0.24, 0.28, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Switch3Platform"]
+shape = SubResource("RectangleShape2D_switch_platform")
+
+[node name="Box1" type="RigidBody2D" parent="." groups=["push_box"]]
+position = Vector2(480, 208)
+mass = 1.0
+physics_material_override = SubResource("PhysicsMaterial_push_box")
+gravity_scale = 0.0
+continuous_cd = 1
+contact_monitor = true
+max_contacts_reported = 4
+lock_rotation = true
+linear_damp = 1.0
+can_sleep = false
+script = ExtResource("4_push_box")
+gravity_manager_path = NodePath("../GravityManager")
+box_id = 1
+
+[node name="Visual" type="ColorRect" parent="Box1"]
+offset_left = -36.0
+offset_top = -36.0
+offset_right = 36.0
+offset_bottom = 36.0
+color = Color(0.82, 0.48, 0.2, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box1"]
+shape = SubResource("RectangleShape2D_push_box")
+
+[node name="Box2" type="RigidBody2D" parent="." groups=["push_box"]]
+position = Vector2(880, 208)
+mass = 1.0
+physics_material_override = SubResource("PhysicsMaterial_push_box")
+gravity_scale = 0.0
+continuous_cd = 1
+contact_monitor = true
+max_contacts_reported = 4
+lock_rotation = true
+linear_damp = 1.0
+can_sleep = false
+script = ExtResource("4_push_box")
+gravity_manager_path = NodePath("../GravityManager")
+box_id = 2
+
+[node name="Visual" type="ColorRect" parent="Box2"]
+offset_left = -36.0
+offset_top = -36.0
+offset_right = 36.0
+offset_bottom = 36.0
+color = Color(0.82, 0.48, 0.2, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box2"]
+shape = SubResource("RectangleShape2D_push_box")
+
+[node name="Switch1" parent="." instance=ExtResource("5_switch_plate")]
+position = Vector2(344, 998)
+
+[node name="Switch2" parent="." instance=ExtResource("5_switch_plate")]
+position = Vector2(560, 120)
+activator = 1
+required_box_id = 1
+
+[node name="Switch3" parent="." instance=ExtResource("5_switch_plate")]
+position = Vector2(712, 888)
+
+[node name="Switch4" parent="." instance=ExtResource("5_switch_plate")]
+position = Vector2(980, 240)
+activator = 1
+required_box_id = 2
+
+[node name="Exit" type="Area2D" parent="."]
+position = Vector2(520, 96)
+
+[node name="InactiveVisual" type="ColorRect" parent="Exit"]
+offset_left = -36.0
+offset_top = -36.0
+offset_right = 36.0
+offset_bottom = 36.0
+color = Color(0.25, 0.42, 0.34, 0.45)
+
+[node name="ActiveVisual" type="ColorRect" parent="Exit"]
+offset_left = -36.0
+offset_top = -36.0
+offset_right = 36.0
+offset_bottom = 36.0
+color = Color(0.18, 0.72, 0.36, 0.95)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
+shape = SubResource("RectangleShape2D_exit")
+
+[node name="Player" parent="." instance=ExtResource("3_player")]
+position = Vector2(140, 998)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(540, 540)
+position_smoothing_enabled = false
+ignore_rotation = false
+
+[node name="GravityManager" type="Node" parent="."]
+script = ExtResource("2_gravity_manager")
+camera_path = NodePath("../Camera2D")
+ui_root_path = NodePath("../UI/UIRoot")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="UIRoot" type="Control" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+pivot_offset = Vector2(540, 540)
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
