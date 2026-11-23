@@ -2,6 +2,13 @@
 
 正式版项目的 Godot 4.7 工程。
 
+## 下载游玩
+
+Windows 64 位第一版：
+[下载 PandaGuardian_v0.1.0_windows_x64.zip](https://github.com/SilasSu114/pandarun/raw/main/release/PandaGuardian_v0.1.0_windows_x64.zip)
+
+下载后解压并双击 `PandaGuardian.exe` 即可游玩，不需要安装 Godot。
+
 ## 运行
 
 使用 Godot 4.7 打开根目录的 `project.godot`，按 `F5` 运行。
