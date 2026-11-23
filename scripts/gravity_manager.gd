@@ -15,6 +15,7 @@ const GRAVITY_DIRECTIONS: Array[Vector2] = [
 @export var camera_path: NodePath
 @export var ui_root_path: NodePath
 @export var enable_runtime_asserts := true
+@export var rotation_direction := 1
 
 var camera: Camera2D
 var ui_root: Control
@@ -65,9 +66,9 @@ func try_rotate() -> bool:
 	if not is_instance_valid(camera) or not is_instance_valid(ui_root):
 		return false
 
-	rotation_index = (rotation_index + 1) % GRAVITY_DIRECTIONS.size()
+	rotation_index = posmod(rotation_index + rotation_direction, GRAVITY_DIRECTIONS.size())
 	target_gravity = GRAVITY_DIRECTIONS[rotation_index]
-	visual_rotation_degrees += 90.0
+	visual_rotation_degrees += 90.0 * float(rotation_direction)
 	target_visual_rotation_degrees = visual_rotation_degrees
 	is_rotating = true
 

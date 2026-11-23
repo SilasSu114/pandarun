@@ -3,11 +3,18 @@
 .godot-*.log
 *.log
 *.tmp
+*.tpz
 tmp/
 logs/
 docs/prompts/
 
-# OS/editor noise
+# Godot 自包含编辑器目录
+/export_templates/
+/feature_profiles/
+/script_templates/
+/text_editor_themes/
+
+# 操作系统与编辑器生成文件
 Thumbs.db
 Desktop.ini
 .DS_Store
@@ -15,6 +22,6 @@ Desktop.ini
 .vs/
 .vscode/
 
-# Old demo workspaces are intentionally excluded from the formal repo
+# 旧演示工作区不纳入正式仓库
 ../projects/godot-gravity-tutorial-demo/
 ../projects/godot-gravity-tutorial-demo-(4.3)/

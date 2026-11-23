@@ -16,6 +16,25 @@ func _ready() -> void:
 	add_child(_overlay)
 
 
+func _unhandled_input(event: InputEvent) -> void:
+	if not event.is_action_pressed("restart_level") or not _is_level_scene():
+		return
+
+	restart_current_scene()
+	get_viewport().set_input_as_handled()
+
+
+func restart_current_scene() -> void:
+	if _changing:
+		return
+
+	var scene := get_tree().current_scene
+	if scene == null or scene.scene_file_path.is_empty():
+		return
+
+	goto_scene(scene.scene_file_path)
+
+
 func goto_scene(path: String) -> void:
 	if _changing:
 		return
@@ -32,3 +51,10 @@ func goto_scene(path: String) -> void:
 	in_tween.tween_property(_overlay, "color:a", 0.0, FADE_IN_DURATION)
 	await in_tween.finished
 	_changing = false
+
+
+func _is_level_scene() -> bool:
+	var scene := get_tree().current_scene
+	if scene == null:
+		return false
+	return scene.scene_file_path.get_file().begins_with("level_")

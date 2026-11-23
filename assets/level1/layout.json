@@ -1,0 +1,182 @@
+{
+  "source_size": [
+    3500,
+    3500
+  ],
+  "play_size": [
+    1080,
+    1080
+  ],
+  "assets": [
+    {
+      "name": "central_rect",
+      "kind": "obstacle",
+      "texture": "res://assets/level1/central_rect.png",
+      "psd_rect": [
+        993,
+        1022,
+        2122,
+        2274
+      ],
+      "play_rect": [
+        306.411,
+        315.36,
+        348.377,
+        386.331
+      ]
+    },
+    {
+      "name": "exit_panel",
+      "kind": "exit",
+      "texture": "res://assets/level1/exit_panel.png",
+      "psd_rect": [
+        181,
+        1364,
+        551,
+        2160
+      ],
+      "play_rect": [
+        55.851,
+        420.891,
+        114.171,
+        245.623
+      ]
+    },
+    {
+      "name": "right_low_obstacle",
+      "kind": "obstacle",
+      "texture": "res://assets/level1/right_low_obstacle.png",
+      "psd_rect": [
+        2606,
+        2152,
+        3301,
+        3313
+      ],
+      "play_rect": [
+        804.137,
+        664.046,
+        214.457,
+        358.251
+      ]
+    },
+    {
+      "name": "top_right_bar",
+      "kind": "obstacle",
+      "texture": "res://assets/level1/top_right_bar.png",
+      "psd_rect": [
+        2405,
+        191,
+        2765,
+        1295
+      ],
+      "play_rect": [
+        742.114,
+        58.937,
+        111.086,
+        340.663
+      ]
+    },
+    {
+      "name": "bottom_left_chip",
+      "kind": "obstacle",
+      "texture": "res://assets/level1/bottom_left_chip.png",
+      "psd_rect": [
+        1474,
+        2944,
+        1840,
+        3313
+      ],
+      "play_rect": [
+        454.834,
+        908.434,
+        112.937,
+        113.863
+      ]
+    },
+    {
+      "name": "condition_pickup",
+      "kind": "condition",
+      "texture": "res://assets/level1/condition_pickup.png",
+      "psd_rect": [
+        2953,
+        1852,
+        3313,
+        2761
+      ],
+      "play_rect": [
+        911.211,
+        571.474,
+        111.086,
+        280.491
+      ]
+    },
+    {
+      "name": "small_right_obstacle",
+      "kind": "obstacle",
+      "texture": "res://assets/level1/small_right_obstacle.png",
+      "psd_rect": [
+        2964,
+        1629,
+        3272,
+        1778
+      ],
+      "play_rect": [
+        914.606,
+        502.663,
+        95.04,
+        45.977
+      ]
+    },
+    {
+      "name": "left_thin_obstacle",
+      "kind": "obstacle",
+      "texture": "res://assets/level1/left_thin_obstacle.png",
+      "psd_rect": [
+        551,
+        1663,
+        617,
+        2127
+      ],
+      "play_rect": [
+        170.023,
+        513.154,
+        20.366,
+        143.177
+      ]
+    },
+    {
+      "name": "left_small_obstacle",
+      "kind": "obstacle",
+      "texture": "res://assets/level1/left_small_obstacle.png",
+      "psd_rect": [
+        551,
+        1565,
+        628,
+        1655
+      ],
+      "play_rect": [
+        170.023,
+        482.914,
+        23.76,
+        27.771
+      ]
+    },
+    {
+      "name": "condition_small_piece",
+      "kind": "condition",
+      "texture": "res://assets/level1/condition_small_piece.png",
+      "psd_rect": [
+        3128,
+        1871,
+        3276,
+        1925
+      ],
+      "play_rect": [
+        965.211,
+        577.337,
+        45.669,
+        16.663
+      ]
+    }
+  ]
+}

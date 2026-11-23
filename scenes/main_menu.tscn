@@ -83,18 +83,57 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.07, 0.09, 0.11, 1)
 
+[node name="TitleBlock" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.25
+anchor_right = 0.5
+anchor_bottom = 0.25
+offset_left = -320.0
+offset_top = -80.0
+offset_right = 320.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="TitleBlock"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "熊猫卫士"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 64
+theme_override_colors/font_color = Color(0.88, 0.93, 0.95, 1)
+
+[node name="Subtitle" type="Label" parent="TitleBlock"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "逆转协议"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.7, 0.76, 0.8, 1)
+
 [node name="DesktopIcons" type="VBoxContainer" parent="."]
-offset_left = 40.0
-offset_top = 40.0
-offset_right = 220.0
-offset_bottom = 560.0
-theme_override_constants/separation = 12
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.55
+anchor_right = 0.5
+anchor_bottom = 0.55
+offset_left = -280.0
+offset_top = -110.0
+offset_right = 280.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+theme_override_constants/separation = 16
 
 [node name="StartButton" type="Button" parent="DesktopIcons"]
 layout_mode = 2
-custom_minimum_size = Vector2(180, 46)
-disabled = true
-text = "启动.EXE"
+custom_minimum_size = Vector2(280, 56)
+size_flags_horizontal = 3
+disabled = false
+text = "开始游戏"
 theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
@@ -102,9 +141,10 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_button_focus")
 
 [node name="ContinueButton" type="Button" parent="DesktopIcons"]
 layout_mode = 2
-custom_minimum_size = Vector2(180, 46)
+custom_minimum_size = Vector2(280, 56)
+size_flags_horizontal = 3
 visible = false
-text = "继续.EXE"
+text = "继续游戏"
 theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
@@ -112,74 +152,49 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_button_focus")
 
 [node name="DemoButton" type="Button" parent="DesktopIcons"]
 layout_mode = 2
-custom_minimum_size = Vector2(180, 46)
+custom_minimum_size = Vector2(280, 56)
+size_flags_horizontal = 3
+visible = false
 self_modulate = Color(1, 1, 1, 0.3)
-text = "OLD_SCAN.EXE"
+text = "旧版扫描"
 theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 theme_override_styles/focus = SubResource("StyleBoxFlat_button_focus")
 
-[node name="SystemWindow" type="PanelContainer" parent="."]
+[node name="Taskbar" type="PanelContainer" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.82
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -220.0
-offset_top = -170.0
-offset_right = 220.0
-offset_bottom = 170.0
+anchor_bottom = 0.82
+offset_left = -260.0
+offset_top = -30.0
+offset_right = 260.0
+offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
-
-[node name="Content" type="VBoxContainer" parent="SystemWindow"]
-layout_mode = 2
-theme_override_constants/separation = 12
-
-[node name="Title" type="Label" parent="SystemWindow/Content"]
-layout_mode = 2
-text = "熊猫卫士"
-horizontal_alignment = 1
-theme_override_font_sizes/font_size = 32
-theme_override_colors/font_color = Color(0.88, 0.93, 0.95, 1)
-
-[node name="Subtitle" type="Label" parent="SystemWindow/Content"]
-layout_mode = 2
-text = "逆转协议"
-horizontal_alignment = 1
-theme_override_font_sizes/font_size = 18
-theme_override_colors/font_color = Color(0.7, 0.76, 0.8, 1)
-
-[node name="Taskbar" type="PanelContainer" parent="."]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -56.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
 [node name="Content" type="HBoxContainer" parent="Taskbar"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="TitleLabel" type="Label" parent="Taskbar/Content"]
+[node name="FullscreenButton" type="Button" parent="Taskbar/Content"]
 layout_mode = 2
-text = "PANDA GUARDIAN"
-theme_override_font_sizes/font_size = 18
-theme_override_colors/font_color = Color(0.82, 0.86, 0.9, 1)
-
-[node name="Spacer" type="Control" parent="Taskbar/Content"]
-layout_mode = 2
+custom_minimum_size = Vector2(240, 52)
 size_flags_horizontal = 3
+text = "全屏切换"
+theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_button_focus")
 
 [node name="ExitButton" type="Button" parent="Taskbar/Content"]
 layout_mode = 2
-custom_minimum_size = Vector2(120, 36)
-text = "退出系统"
+custom_minimum_size = Vector2(240, 52)
+size_flags_horizontal = 3
+text = "退出游戏"
 theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
@@ -192,4 +207,5 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+visible = false
 material = SubResource("ShaderMaterial_y2k")

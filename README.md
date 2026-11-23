@@ -1,13 +1,35 @@
-# Godot Gravity Main
+# 熊猫卫士：逆转协议
 
-正式版《熊猫卫士：逆转协议》的基础项目。
+正式版项目的 Godot 4.7 工程。
 
-## 运行方式
+## 运行
 
-在 Godot 4.7 中打开本项目的 `project.godot`，然后按 `F5` 运行。
+使用 Godot 4.7 打开根目录的 `project.godot`，按 `F5` 运行。
 
-## 当前状态
+## 工程结构
 
-- 已接入 Y2K 风格主界面。
-- 第一关尚未接入，主界面中的“开始”按钮暂时禁用。
-- 演示版作为隐藏彩蛋保留在正式项目中，可通过主界面左下角的 `OLD_SCAN.EXE` 打开。
+- `assets/`：正式场景使用的图片与布局数据。
+- `scenes/`：主菜单、正式关卡和保留的演示彩蛋场景。
+- `scripts/`：关卡、角色、重力、界面与平台设置脚本。
+- `shaders/`：主界面使用的着色器。
+- `tests/`：无界面冒烟测试，不参与正常游戏流程。
+- `docs/`：工程交接、资源映射和架构记录。
+- `export_presets.cfg`：Windows 导出预设。
+
+`.godot/` 是编辑器自动生成的缓存，可随时重建，不应提交。
+
+## 自动验证
+
+在项目根目录执行：
+
+```powershell
+godot --headless --path . --script tests/level_2_smoke.gd
+godot --headless --path . --script tests/restart_smoke.gd
+godot --headless --path . --script tests/push_box_unstick_smoke.gd
+```
+
+## 当前入口
+
+- 主场景：`res://scenes/main_menu.tscn`
+- 正式关卡：`res://scenes/level_1.tscn` 至 `res://scenes/level_3.tscn`
+- 演示彩蛋：`res://scenes/main.tscn`

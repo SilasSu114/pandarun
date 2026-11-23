@@ -1,0 +1,308 @@
+[gd_scene load_steps=36 format=3]
+
+[ext_resource type="Script" path="res://scripts/level_1.gd" id="1_level_1"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_player"]
+[ext_resource type="Script" path="res://scripts/gravity_manager.gd" id="3_gravity_manager"]
+[ext_resource type="Texture2D" path="res://assets/level1/background.png" id="4_bg"]
+[ext_resource type="Texture2D" path="res://assets/level1/central_rect.png" id="5_central"]
+[ext_resource type="Texture2D" path="res://assets/level1/exit_panel.png" id="6_exit"]
+[ext_resource type="Texture2D" path="res://assets/level1/right_low_obstacle.png" id="7_right_low"]
+[ext_resource type="Texture2D" path="res://assets/level1/top_right_bar.png" id="8_top_bar"]
+[ext_resource type="Texture2D" path="res://assets/level1/bottom_left_chip.png" id="9_chip"]
+[ext_resource type="Texture2D" path="res://assets/level1/condition_pickup.png" id="10_cond_frame"]
+[ext_resource type="Texture2D" path="res://assets/level1/condition_small_piece.png" id="11_cond_bit"]
+[ext_resource type="Texture2D" path="res://assets/level1/small_right_obstacle.png" id="12_small_right"]
+[ext_resource type="Texture2D" path="res://assets/level1/left_thin_obstacle.png" id="13_left_thin"]
+[ext_resource type="Texture2D" path="res://assets/level1/left_small_obstacle.png" id="14_left_small"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_horizontal"]
+size = Vector2(1194, 57)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_vertical"]
+size = Vector2(57, 1194)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chip"]
+size = Vector2(113, 114)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_right_chunk"]
+size = Vector2(107, 89)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_right_strip"]
+size = Vector2(9, 358)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_central_block_topleft"]
+size = Vector2(109, 76)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_central_spine_upper"]
+size = Vector2(6, 200)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_central_spine_right"]
+size = Vector2(5, 297)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_central_bar_thin"]
+size = Vector2(348, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_central_spine_lower"]
+size = Vector2(16, 97)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_central_bar_left_thick"]
+size = Vector2(109, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_central_block_bottomright"]
+size = Vector2(71, 103)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_top_bar_full"]
+size = Vector2(111, 341)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_right_bottom_bar"]
+size = Vector2(107, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_card_zone"]
+size = Vector2(95, 62)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_left_thin"]
+size = Vector2(20, 143)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_left_small"]
+size = Vector2(24, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pickup"]
+size = Vector2(46, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cond_top_bar"]
+size = Vector2(106, 47)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cond_column"]
+size = Vector2(9, 280)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit"]
+size = Vector2(114, 246)
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_level_1")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(540, 540)
+scale = Vector2(0.308571, 0.308571)
+texture = ExtResource("4_bg")
+
+[node name="Room" type="Node2D" parent="."]
+
+[node name="TopWall" type="StaticBody2D" parent="Room"]
+position = Vector2(540, 28.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room/TopWall"]
+shape = SubResource("RectangleShape2D_wall_horizontal")
+
+[node name="BottomWall" type="StaticBody2D" parent="Room"]
+position = Vector2(540, 1051.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room/BottomWall"]
+shape = SubResource("RectangleShape2D_wall_horizontal")
+
+[node name="LeftWall" type="StaticBody2D" parent="Room"]
+position = Vector2(28.5, 540)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room/LeftWall"]
+shape = SubResource("RectangleShape2D_wall_vertical")
+
+[node name="RightWall" type="StaticBody2D" parent="Room"]
+position = Vector2(1051.5, 540)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room/RightWall"]
+shape = SubResource("RectangleShape2D_wall_vertical")
+
+[node name="StartMarker" type="Node2D" parent="."]
+position = Vector2(140, 991.5)
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="CentralStructure" type="StaticBody2D" groups=["teaching_obstacle"] parent="Obstacles"]
+position = Vector2(480.6, 508.5)
+
+[node name="Visual" type="Sprite2D" parent="Obstacles/CentralStructure"]
+scale = Vector2(0.308571, 0.308571)
+texture = ExtResource("5_central")
+
+[node name="BlockTopLeft" type="CollisionShape2D" parent="Obstacles/CentralStructure"]
+position = Vector2(-119.8, -155.2)
+shape = SubResource("RectangleShape2D_central_block_topleft")
+
+[node name="SpineUpper" type="CollisionShape2D" parent="Obstacles/CentralStructure"]
+position = Vector2(-166.05, -17.25)
+shape = SubResource("RectangleShape2D_central_spine_upper")
+
+[node name="SpineRight" type="CollisionShape2D" parent="Obstacles/CentralStructure"]
+position = Vector2(-68.1, 31.05)
+shape = SubResource("RectangleShape2D_central_spine_right")
+
+[node name="BarThin" type="CollisionShape2D" parent="Obstacles/CentralStructure"]
+position = Vector2(0, 86.25)
+shape = SubResource("RectangleShape2D_central_bar_thin")
+
+[node name="SpineLower" type="CollisionShape2D" parent="Obstacles/CentralStructure"]
+position = Vector2(-166.1, 138.0)
+shape = SubResource("RectangleShape2D_central_spine_lower")
+
+[node name="BarLeftThick" type="CollisionShape2D" parent="Obstacles/CentralStructure"]
+position = Vector2(-119.8, 179.4)
+shape = SubResource("RectangleShape2D_central_bar_left_thick")
+
+[node name="BarFullThin" type="CollisionShape2D" parent="Obstacles/CentralStructure"]
+position = Vector2(0, 182.85)
+shape = SubResource("RectangleShape2D_central_bar_thin")
+
+[node name="BlockBottomRight" type="CollisionShape2D" parent="Obstacles/CentralStructure"]
+position = Vector2(138.7, 134.7)
+shape = SubResource("RectangleShape2D_central_block_bottomright")
+
+[node name="TopRightBar" type="StaticBody2D" groups=["teaching_obstacle"] parent="Obstacles"]
+position = Vector2(797.7, 229.3)
+
+[node name="Visual" type="Sprite2D" parent="Obstacles/TopRightBar"]
+scale = Vector2(0.308571, 0.308571)
+texture = ExtResource("8_top_bar")
+
+[node name="Footprint" type="CollisionShape2D" parent="Obstacles/TopRightBar"]
+shape = SubResource("RectangleShape2D_top_bar_full")
+
+[node name="LowObstacle1" type="StaticBody2D" groups=["teaching_obstacle"] parent="Obstacles"]
+position = Vector2(511.3, 965.4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/LowObstacle1"]
+shape = SubResource("RectangleShape2D_chip")
+
+[node name="Visual" type="Sprite2D" parent="Obstacles/LowObstacle1"]
+scale = Vector2(0.308571, 0.308571)
+texture = ExtResource("9_chip")
+
+[node name="RightLowObstacle" type="StaticBody2D" groups=["teaching_obstacle"] parent="Obstacles"]
+position = Vector2(911.4, 843.1)
+
+[node name="Visual" type="Sprite2D" parent="Obstacles/RightLowObstacle"]
+scale = Vector2(0.308571, 0.308571)
+texture = ExtResource("7_right_low")
+
+[node name="Chunk" type="CollisionShape2D" parent="Obstacles/RightLowObstacle"]
+position = Vector2(-53.7, 104.55)
+shape = SubResource("RectangleShape2D_right_chunk")
+
+[node name="Strip" type="CollisionShape2D" parent="Obstacles/RightLowObstacle"]
+position = Vector2(102.8, 0.05)
+shape = SubResource("RectangleShape2D_right_strip")
+
+[node name="BottomBar" type="CollisionShape2D" parent="Obstacles/RightLowObstacle"]
+position = Vector2(53.55, 171.65)
+shape = SubResource("RectangleShape2D_right_bottom_bar")
+
+[node name="ConditionCard" type="Node2D" parent="Obstacles"]
+position = Vector2(962.1, 525.7)
+
+[node name="Visual" type="Sprite2D" parent="Obstacles/ConditionCard"]
+scale = Vector2(0.308571, 0.308571)
+texture = ExtResource("12_small_right")
+
+[node name="LeftThinObstacle" type="StaticBody2D" groups=["teaching_obstacle"] parent="Obstacles"]
+position = Vector2(180.2, 584.7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/LeftThinObstacle"]
+shape = SubResource("RectangleShape2D_left_thin")
+
+[node name="Visual" type="Sprite2D" parent="Obstacles/LeftThinObstacle"]
+scale = Vector2(0.308571, 0.308571)
+texture = ExtResource("13_left_thin")
+
+[node name="LeftSmallObstacle" type="StaticBody2D" groups=["teaching_obstacle"] parent="Obstacles"]
+position = Vector2(181.9, 496.8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/LeftSmallObstacle"]
+shape = SubResource("RectangleShape2D_left_small")
+
+[node name="Visual" type="Sprite2D" parent="Obstacles/LeftSmallObstacle"]
+scale = Vector2(0.308571, 0.308571)
+texture = ExtResource("14_left_small")
+
+[node name="ConditionFrame" type="StaticBody2D" parent="."]
+position = Vector2(966.75, 711.7)
+
+[node name="Visual" type="Sprite2D" parent="ConditionFrame"]
+scale = Vector2(0.308571, 0.308571)
+texture = ExtResource("10_cond_frame")
+
+[node name="TopBar" type="CollisionShape2D" parent="ConditionFrame"]
+position = Vector2(-2.3, -81.79)
+shape = SubResource("RectangleShape2D_cond_top_bar")
+
+[node name="LeftColumn" type="CollisionShape2D" parent="ConditionFrame"]
+position = Vector2(-50.9, 0)
+shape = SubResource("RectangleShape2D_cond_column")
+
+[node name="ConditionPickup" type="Area2D" parent="."]
+position = Vector2(988, 585.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ConditionPickup"]
+shape = SubResource("RectangleShape2D_pickup")
+
+[node name="CardZone" type="CollisionShape2D" parent="ConditionPickup"]
+position = Vector2(-25.9, -51.65)
+shape = SubResource("RectangleShape2D_card_zone")
+
+[node name="Visual" type="Sprite2D" parent="ConditionPickup"]
+scale = Vector2(0.308571, 0.308571)
+texture = ExtResource("11_cond_bit")
+
+[node name="ExitArea" type="Area2D" parent="."]
+position = Vector2(112.9, 543.7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitArea"]
+shape = SubResource("RectangleShape2D_exit")
+
+[node name="Visual" type="Sprite2D" parent="ExitArea"]
+visible = false
+scale = Vector2(0.308571, 0.308571)
+texture = ExtResource("6_exit")
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(140, 991.5)
+jump_velocity = 630.0
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(540, 540)
+
+[node name="GravityManager" type="Node" parent="."]
+script = ExtResource("3_gravity_manager")
+camera_path = NodePath("../Camera")
+ui_root_path = NodePath("../HUDLayer/UIRoot")
+rotation_direction = -1
+
+[node name="HUDLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="UIRoot" type="Control" parent="HUDLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TeachingLayer" type="CanvasLayer" parent="."]
+layer = 20
+
+[node name="HintLabel" type="Label" parent="TeachingLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -440.0
+offset_top = -88.0
+offset_right = 440.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "左右移动：A / D    跳跃：W"
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(0.95, 0.96, 0.97, 1)
