@@ -4,10 +4,13 @@
 
 ## 下载游玩
 
-Windows 64 位第一版：
-[下载 PandaGuardian_v0.1.0_windows_x64.zip](https://github.com/SilasSu114/pandarun/raw/main/release/PandaGuardian_v0.1.0_windows_x64.zip)
+Windows 64 位第一版（单文件，推荐）：
+[直接下载 PandaGuardian.exe](https://github.com/SilasSu114/pandarun/raw/main/PandaGuardian.exe)
 
-下载后解压并双击 `PandaGuardian.exe` 即可游玩，不需要安装 Godot。
+下载后直接双击即可游玩，不需要解压或安装 Godot。
+
+如需压缩包版本：
+[下载 PandaGuardian_v0.1.0_windows_x64.zip](https://github.com/SilasSu114/pandarun/raw/main/release/PandaGuardian_v0.1.0_windows_x64.zip)
 
 ## 运行
 
