@@ -1,72 +1,114 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=18 format=3]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_main_menu"]
-[ext_resource type="Shader" path="res://shaders/y2k_desktop.gdshader" id="2_y2k_desktop_shader"]
+[ext_resource type="Texture2D" path="res://assets/menu/desktop.png" id="2_desktop"]
+[ext_resource type="Shader" path="res://shaders/menu_glitch.gdshader" id="3_menu_glitch"]
+[ext_resource type="Shader" path="res://shaders/y2k_desktop.gdshader" id="4_y2k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_glitch"]
+shader = ExtResource("3_menu_glitch")
+shader_parameter/burst = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y2k"]
-shader = ExtResource("2_y2k_desktop_shader")
+shader = ExtResource("4_y2k")
+shader_parameter/grid_strength = 0.015
+shader_parameter/scan_strength = 0.04
+shader_parameter/flicker_strength = 0.02
+shader_parameter/grid_scale = 48.0
+shader_parameter/scan_scale = 540.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
-bg_color = Color(0.11, 0.13, 0.16, 0.96)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.22, 0.26, 0.3, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
+[sub_resource type="SystemFont" id="SystemFont_song"]
+font_names = PackedStringArray("SimSun", "NSimSun", "Microsoft YaHei")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_normal"]
-bg_color = Color(0.13, 0.15, 0.18, 0.96)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.24, 0.29, 0.33, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+[sub_resource type="AtlasTexture" id="AtlasTexture_taskbar"]
+atlas = ExtResource("2_desktop")
+region = Rect2(2000, 1205, 8, 235)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_hover"]
-bg_color = Color(0.16, 0.19, 0.22, 0.96)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.33, 0.39, 0.44, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+[sub_resource type="AtlasTexture" id="AtlasTexture_edge"]
+atlas = ExtResource("2_desktop")
+region = Rect2(2552, 0, 8, 1440)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_pressed"]
-bg_color = Color(0.09, 0.11, 0.13, 0.96)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.29, 0.35, 0.4, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+[sub_resource type="StyleBoxFlat" id="StyleBox_window"]
+bg_color = Color(0.757, 0.808, 0.827, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.04, 0.047, 0.055, 1)
+shadow_color = Color(0, 0, 0, 0.35)
+shadow_size = 10
+shadow_offset = Vector2(5, 7)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_focus"]
+[sub_resource type="StyleBoxFlat" id="StyleBox_title"]
+bg_color = Color(0.671, 0.812, 0.875, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.04, 0.047, 0.055, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_button_normal"]
+bg_color = Color(0.671, 0.812, 0.875, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.04, 0.047, 0.055, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_button_hover"]
+bg_color = Color(0.773, 0.878, 0.925, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.04, 0.047, 0.055, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_button_pressed"]
+bg_color = Color(0.549, 0.698, 0.769, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.04, 0.047, 0.055, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_button_focus"]
 bg_color = Color(0, 0, 0, 0)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.55, 0.85, 0.85, 0.65)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.04, 0.047, 0.055, 0.9)
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_close_normal"]
+bg_color = Color(0.937, 0, 0.176, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.04, 0.047, 0.055, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_close_hover"]
+bg_color = Color(1, 0.251, 0.376, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.04, 0.047, 0.055, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_close_pressed"]
+bg_color = Color(0.706, 0, 0.133, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.04, 0.047, 0.055, 1)
 
 [node name="MainMenu" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -74,138 +116,324 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_main_menu")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 0.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_desktop")
+expand_mode = 1
+stretch_mode = 0
+material = SubResource("ShaderMaterial_glitch")
+
+[node name="BackgroundFill" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_edge")
+expand_mode = 1
+stretch_mode = 0
+
+[node name="GlitchStripe" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.7463
+anchor_right = 0.7545
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.961, 0.451, 0.996, 1)
+
+[node name="GlitchBlock" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.8087
+anchor_right = 0.9589
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.478, 0.996, 0.373, 1)
+
+[node name="TaskbarPatch" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.9589
+anchor_top = 0.836806
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_taskbar")
+expand_mode = 1
+stretch_mode = 0
+
+[node name="MainWindow" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -384.0
+offset_top = -238.0
+offset_right = 384.0
+offset_bottom = 238.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WindowPanel" type="Panel" parent="MainWindow"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.07, 0.09, 0.11, 1)
+theme_override_styles/panel = SubResource("StyleBox_window")
 
-[node name="TitleBlock" type="VBoxContainer" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.25
-anchor_right = 0.5
-anchor_bottom = 0.25
-offset_left = -320.0
-offset_top = -80.0
-offset_right = 320.0
-offset_bottom = 80.0
+[node name="TitleBar" type="Panel" parent="MainWindow"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 50.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBox_title")
+
+[node name="TitleLabel" type="Label" parent="MainWindow/TitleBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_right = -44.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
-
-[node name="Title" type="Label" parent="TitleBlock"]
-layout_mode = 2
-size_flags_horizontal = 4
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.063, 0.078, 0.094, 1)
+theme_override_fonts/font = SubResource("SystemFont_song")
+theme_override_font_sizes/font_size = 22
 text = "熊猫卫士"
-horizontal_alignment = 1
-theme_override_font_sizes/font_size = 64
-theme_override_colors/font_color = Color(0.88, 0.93, 0.95, 1)
+vertical_alignment = 1
 
-[node name="Subtitle" type="Label" parent="TitleBlock"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "逆转协议"
-horizontal_alignment = 1
-theme_override_font_sizes/font_size = 24
-theme_override_colors/font_color = Color(0.7, 0.76, 0.8, 1)
+[node name="CloseButton" type="Button" parent="MainWindow/TitleBar"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -37.0
+offset_top = -14.0
+offset_right = -10.0
+offset_bottom = 14.0
+grow_horizontal = 0
+grow_vertical = 2
+tooltip_text = "退出游戏"
+theme_override_styles/normal = SubResource("StyleBox_close_normal")
+theme_override_styles/hover = SubResource("StyleBox_close_hover")
+theme_override_styles/pressed = SubResource("StyleBox_close_pressed")
+theme_override_styles/focus = SubResource("StyleBox_button_focus")
 
-[node name="DesktopIcons" type="VBoxContainer" parent="."]
+[node name="StartButton" type="Button" parent="MainWindow"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 0.55
+anchor_top = 0.361
 anchor_right = 0.5
-anchor_bottom = 0.55
-offset_left = -280.0
-offset_top = -110.0
-offset_right = 280.0
-offset_bottom = 130.0
+anchor_bottom = 0.361
+offset_left = -86.0
+offset_top = -28.5
+offset_right = 86.0
+offset_bottom = 28.5
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
-theme_override_constants/separation = 16
+theme_override_colors/font_color = Color(0.063, 0.078, 0.094, 1)
+theme_override_colors/font_hover_color = Color(0.063, 0.078, 0.094, 1)
+theme_override_colors/font_pressed_color = Color(0.063, 0.078, 0.094, 1)
+theme_override_colors/font_focus_color = Color(0.063, 0.078, 0.094, 1)
+theme_override_fonts/font = SubResource("SystemFont_song")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBox_button_normal")
+theme_override_styles/hover = SubResource("StyleBox_button_hover")
+theme_override_styles/pressed = SubResource("StyleBox_button_pressed")
+theme_override_styles/focus = SubResource("StyleBox_button_focus")
+text = "开始"
 
-[node name="StartButton" type="Button" parent="DesktopIcons"]
-layout_mode = 2
-custom_minimum_size = Vector2(280, 56)
-size_flags_horizontal = 3
-disabled = false
-text = "开始游戏"
-theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
-theme_override_styles/focus = SubResource("StyleBoxFlat_button_focus")
-
-[node name="ContinueButton" type="Button" parent="DesktopIcons"]
-layout_mode = 2
-custom_minimum_size = Vector2(280, 56)
-size_flags_horizontal = 3
-visible = false
-text = "继续游戏"
-theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
-theme_override_styles/focus = SubResource("StyleBoxFlat_button_focus")
-
-[node name="DemoButton" type="Button" parent="DesktopIcons"]
-layout_mode = 2
-custom_minimum_size = Vector2(280, 56)
-size_flags_horizontal = 3
-visible = false
-self_modulate = Color(1, 1, 1, 0.3)
-text = "旧版扫描"
-theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
-theme_override_styles/focus = SubResource("StyleBoxFlat_button_focus")
-
-[node name="Taskbar" type="PanelContainer" parent="."]
+[node name="SettingsButton" type="Button" parent="MainWindow"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 0.82
+anchor_top = 0.603
 anchor_right = 0.5
-anchor_bottom = 0.82
-offset_left = -260.0
-offset_top = -30.0
-offset_right = 260.0
-offset_bottom = 30.0
+anchor_bottom = 0.603
+offset_left = -86.0
+offset_top = -28.5
+offset_right = 86.0
+offset_bottom = 28.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+theme_override_colors/font_color = Color(0.063, 0.078, 0.094, 1)
+theme_override_colors/font_hover_color = Color(0.063, 0.078, 0.094, 1)
+theme_override_colors/font_pressed_color = Color(0.063, 0.078, 0.094, 1)
+theme_override_colors/font_focus_color = Color(0.063, 0.078, 0.094, 1)
+theme_override_fonts/font = SubResource("SystemFont_song")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBox_button_normal")
+theme_override_styles/hover = SubResource("StyleBox_button_hover")
+theme_override_styles/pressed = SubResource("StyleBox_button_pressed")
+theme_override_styles/focus = SubResource("StyleBox_button_focus")
+text = "设置"
 
-[node name="Content" type="HBoxContainer" parent="Taskbar"]
-layout_mode = 2
-theme_override_constants/separation = 12
+[node name="SettingsWindow" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -140.0
+offset_right = 350.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="FullscreenButton" type="Button" parent="Taskbar/Content"]
-layout_mode = 2
-custom_minimum_size = Vector2(240, 52)
-size_flags_horizontal = 3
-text = "全屏切换"
-theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
-theme_override_styles/focus = SubResource("StyleBoxFlat_button_focus")
-
-[node name="ExitButton" type="Button" parent="Taskbar/Content"]
-layout_mode = 2
-custom_minimum_size = Vector2(240, 52)
-size_flags_horizontal = 3
-text = "退出游戏"
-theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
-theme_override_styles/focus = SubResource("StyleBoxFlat_button_focus")
-
-[node name="Y2KOverlay" type="ColorRect" parent="."]
+[node name="WindowPanel" type="Panel" parent="SettingsWindow"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-visible = false
+theme_override_styles/panel = SubResource("StyleBox_window")
+
+[node name="TitleBar" type="Panel" parent="SettingsWindow"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 50.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBox_title")
+
+[node name="TitleLabel" type="Label" parent="SettingsWindow/TitleBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_right = -44.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.063, 0.078, 0.094, 1)
+theme_override_fonts/font = SubResource("SystemFont_song")
+theme_override_font_sizes/font_size = 22
+text = "设置"
+vertical_alignment = 1
+
+[node name="CloseButton" type="Button" parent="SettingsWindow/TitleBar"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -37.0
+offset_top = -14.0
+offset_right = -10.0
+offset_bottom = 14.0
+grow_horizontal = 0
+grow_vertical = 2
+tooltip_text = "返回"
+theme_override_styles/normal = SubResource("StyleBox_close_normal")
+theme_override_styles/hover = SubResource("StyleBox_close_hover")
+theme_override_styles/pressed = SubResource("StyleBox_close_pressed")
+theme_override_styles/focus = SubResource("StyleBox_button_focus")
+
+[node name="Body" type="VBoxContainer" parent="SettingsWindow"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -70.0
+offset_right = 160.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 18
+
+[node name="FullscreenButton" type="Button" parent="SettingsWindow/Body"]
+layout_mode = 2
+custom_minimum_size = Vector2(320, 52)
+theme_override_colors/font_color = Color(0.063, 0.078, 0.094, 1)
+theme_override_colors/font_hover_color = Color(0.063, 0.078, 0.094, 1)
+theme_override_colors/font_pressed_color = Color(0.063, 0.078, 0.094, 1)
+theme_override_colors/font_focus_color = Color(0.063, 0.078, 0.094, 1)
+theme_override_fonts/font = SubResource("SystemFont_song")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBox_button_normal")
+theme_override_styles/hover = SubResource("StyleBox_button_hover")
+theme_override_styles/pressed = SubResource("StyleBox_button_pressed")
+theme_override_styles/focus = SubResource("StyleBox_button_focus")
+tooltip_text = "切换全屏 (F11)"
+text = "全屏:关"
+
+[node name="ExitButton" type="Button" parent="SettingsWindow/Body"]
+layout_mode = 2
+custom_minimum_size = Vector2(320, 52)
+theme_override_colors/font_color = Color(0.063, 0.078, 0.094, 1)
+theme_override_colors/font_hover_color = Color(0.063, 0.078, 0.094, 1)
+theme_override_colors/font_pressed_color = Color(0.063, 0.078, 0.094, 1)
+theme_override_colors/font_focus_color = Color(0.063, 0.078, 0.094, 1)
+theme_override_fonts/font = SubResource("SystemFont_song")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBox_button_normal")
+theme_override_styles/hover = SubResource("StyleBox_button_hover")
+theme_override_styles/pressed = SubResource("StyleBox_button_pressed")
+theme_override_styles/focus = SubResource("StyleBox_button_focus")
+text = "退出游戏"
+
+[node name="BackButton" type="Button" parent="SettingsWindow/Body"]
+layout_mode = 2
+custom_minimum_size = Vector2(320, 52)
+theme_override_colors/font_color = Color(0.063, 0.078, 0.094, 1)
+theme_override_colors/font_hover_color = Color(0.063, 0.078, 0.094, 1)
+theme_override_colors/font_pressed_color = Color(0.063, 0.078, 0.094, 1)
+theme_override_colors/font_focus_color = Color(0.063, 0.078, 0.094, 1)
+theme_override_fonts/font = SubResource("SystemFont_song")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBox_button_normal")
+theme_override_styles/hover = SubResource("StyleBox_button_hover")
+theme_override_styles/pressed = SubResource("StyleBox_button_pressed")
+theme_override_styles/focus = SubResource("StyleBox_button_focus")
+text = "返回"
+
+[node name="CrtOverlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 material = SubResource("ShaderMaterial_y2k")
