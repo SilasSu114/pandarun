@@ -4,13 +4,12 @@
 
 ## 下载游玩
 
-Windows 64 位第一版（单文件，推荐）：
-[直接下载 PandaGuardian.exe](https://github.com/SilasSu114/pandarun/raw/main/PandaGuardian.exe)
+Windows 64 位 v0.2 单文件版：
+[下载 PandaGuardian.exe](https://github.com/SilasSu114/pandarun/releases/download/v0.2/PandaGuardian.exe)
 
 下载后直接双击即可游玩，不需要解压或安装 Godot。
 
-如需压缩包版本：
-[下载 PandaGuardian_v0.1.0_windows_x64.zip](https://github.com/SilasSu114/pandarun/raw/main/release/PandaGuardian_v0.1.0_windows_x64.zip)
+[查看 v0.2 发行说明](https://github.com/SilasSu114/pandarun/releases/tag/v0.2)
 
 ## 运行
 
@@ -33,13 +32,17 @@ Windows 64 位第一版（单文件，推荐）：
 在项目根目录执行：
 
 ```powershell
+godot --headless --path . --script tests/level_1_condition_smoke.gd
 godot --headless --path . --script tests/level_2_smoke.gd
+godot --headless --path . --script tests/level_3_smoke.gd
 godot --headless --path . --script tests/restart_smoke.gd
 godot --headless --path . --script tests/push_box_unstick_smoke.gd
+godot --headless --path . --script tests/player_animation_smoke.gd
 ```
 
 ## 当前入口
 
 - 主场景：`res://scenes/main_menu.tscn`
-- 正式关卡：`res://scenes/level_1.tscn` 至 `res://scenes/level_3.tscn`
+- 正式关卡：`res://scenes/level_1.tscn`、`res://scenes/level_2.tscn`、`res://scenes/level_3.tscn`
+- 第三关：表世界和里世界一已接入，里世界二暂未开放
 - 演示彩蛋：`res://scenes/main.tscn`

@@ -6,6 +6,9 @@ const FADE_IN_DURATION := 0.35
 var _changing := false
 var _overlay: ColorRect
 
+var level_3_condition_collected := false
+var level_3_inner1_completed := false
+
 
 func _ready() -> void:
 	layer = 128
@@ -14,6 +17,11 @@ func _ready() -> void:
 	_overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(_overlay)
+
+
+func reset_progress() -> void:
+	level_3_condition_collected = false
+	level_3_inner1_completed = false
 
 
 func _unhandled_input(event: InputEvent) -> void:

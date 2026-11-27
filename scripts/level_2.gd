@@ -121,8 +121,7 @@ func _on_tutorial_body_entered(body: Node2D) -> void:
 
 func _finish_tutorial() -> void:
 	_tutorial_running = false
-	_beam_offset = BEAM_MAX_OFFSET
-	_beam_direction = -1.0
+	_beam_direction = 1.0
 	_beam_armed = true
 	_invulnerability_left = 0.8
 	_safe_position = player.global_position
@@ -184,7 +183,7 @@ func _on_exit_body_entered(body: Node2D) -> void:
 	var tween := create_tween()
 	tween.tween_property(screen_flash, "color:a", 1.0, 0.12)
 	await tween.finished
-	LevelRouter.goto_scene("res://scenes/main_menu.tscn")
+	LevelRouter.goto_scene("res://scenes/level_3.tscn")
 
 
 func _on_beam_body_entered(body: Node2D) -> void:

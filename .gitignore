@@ -8,6 +8,7 @@ tmp/
 logs/
 docs/prompts/
 builds/
+/PandaGuardian.exe
 
 # Godot 自包含编辑器目录
 /export_templates/

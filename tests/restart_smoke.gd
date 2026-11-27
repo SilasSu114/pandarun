@@ -4,6 +4,8 @@ const LEVEL_PATHS := [
 	"res://scenes/level_1.tscn",
 	"res://scenes/level_2.tscn",
 	"res://scenes/level_3.tscn",
+	"res://scenes/level_3_inner_1.tscn",
+	"res://scenes/level_4_placeholder.tscn",
 ]
 
 var _failures := 0

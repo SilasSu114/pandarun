@@ -1,0 +1,338 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/level_3_inner_1.gd" id="1_level"]
+[ext_resource type="Texture2D" path="res://assets/level3_inner1/background.png" id="2_background"]
+[ext_resource type="Texture2D" path="res://assets/level3_inner1/selected_png.png" id="3_png"]
+[ext_resource type="Texture2D" path="res://assets/level3_inner1/repair_log.png" id="4_log"]
+[ext_resource type="Texture2D" path="res://assets/level3_inner1/return_button.png" id="5_return"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="6_player"]
+[ext_resource type="Script" path="res://scripts/gravity_manager.gd" id="7_gravity"]
+[ext_resource type="Script" path="res://scripts/push_box.gd" id="8_push_box"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boundary_horizontal"]
+size = Vector2(1080, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boundary_vertical"]
+size = Vector2(64, 1080)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_center_platform"]
+size = Vector2(240, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_left_platform"]
+size = Vector2(176, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_right_block"]
+size = Vector2(226, 256)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_png"]
+size = Vector2(72, 88)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_png_interaction"]
+size = Vector2(150, 170)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_log"]
+size = Vector2(170, 260)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_return"]
+size = Vector2(170, 145)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_png"]
+friction = 0.8
+bounce = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_preview"]
+bg_color = Color(0.035, 0.032, 0.014, 0.95)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.82, 0.12, 0.98)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_repair"]
+bg_color = Color(0.035, 0.032, 0.014, 0.95)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.82, 0.12, 0.98)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_progress_background"]
+bg_color = Color(0.08, 0.075, 0.045, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_progress_fill"]
+bg_color = Color(1, 0.79, 0.09, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="Level3Inner1" type="Node2D"]
+script = ExtResource("1_level")
+
+[node name="Backdrop" type="Polygon2D" parent="."]
+z_index = -30
+color = Color(0.005, 0.008, 0.012, 1)
+polygon = PackedVector2Array(-1000, -1000, 2080, -1000, 2080, 2080, -1000, 2080)
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -20
+texture = ExtResource("2_background")
+centered = false
+
+[node name="Boundary" type="StaticBody2D" parent="." groups=["level3_inner1_solid"]]
+collision_mask = 0
+
+[node name="Top" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(540, 32)
+shape = SubResource("RectangleShape2D_boundary_horizontal")
+
+[node name="Bottom" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(540, 1048)
+shape = SubResource("RectangleShape2D_boundary_horizontal")
+
+[node name="Left" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(32, 540)
+shape = SubResource("RectangleShape2D_boundary_vertical")
+
+[node name="Right" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(1048, 540)
+shape = SubResource("RectangleShape2D_boundary_vertical")
+
+[node name="CenterPlatform" type="StaticBody2D" parent="." groups=["level3_inner1_solid"]]
+position = Vector2(540, 675)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CenterPlatform"]
+shape = SubResource("RectangleShape2D_center_platform")
+
+[node name="Fill" type="Polygon2D" parent="CenterPlatform"]
+color = Color(0.018, 0.034, 0.052, 0.96)
+polygon = PackedVector2Array(-120, -25, 120, -25, 120, 25, -120, 25)
+
+[node name="Outline" type="Line2D" parent="CenterPlatform"]
+points = PackedVector2Array(-120, -25, 120, -25, 120, 25, -120, 25, -120, -25)
+width = 4.0
+default_color = Color(0.16, 0.78, 1, 0.92)
+
+[node name="LeftPlatform" type="StaticBody2D" parent="." groups=["level3_inner1_solid"]]
+position = Vector2(152, 624)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftPlatform"]
+shape = SubResource("RectangleShape2D_left_platform")
+
+[node name="Fill" type="Polygon2D" parent="LeftPlatform"]
+color = Color(0.018, 0.034, 0.052, 0.96)
+polygon = PackedVector2Array(-88, -24, 88, -24, 88, 24, -88, 24)
+
+[node name="Outline" type="Line2D" parent="LeftPlatform"]
+points = PackedVector2Array(-88, -24, 88, -24, 88, 24, -88, 24, -88, -24)
+width = 4.0
+default_color = Color(0.16, 0.78, 1, 0.92)
+
+[node name="RightBlock" type="StaticBody2D" parent="." groups=["level3_inner1_solid"]]
+position = Vector2(903, 888)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightBlock"]
+shape = SubResource("RectangleShape2D_right_block")
+
+[node name="Fill" type="Polygon2D" parent="RightBlock"]
+color = Color(0.018, 0.034, 0.052, 0.96)
+polygon = PackedVector2Array(-113, -128, 113, -128, 113, 128, -113, 128)
+
+[node name="Outline" type="Line2D" parent="RightBlock"]
+points = PackedVector2Array(-113, -128, 113, -128, 113, 128, -113, 128, -113, -128)
+width = 4.0
+default_color = Color(0.16, 0.78, 1, 0.92)
+
+[node name="LogVisual" type="Sprite2D" parent="."]
+visible = false
+z_index = 4
+position = Vector2(540, 382)
+scale = Vector2(0.72, 0.72)
+texture = ExtResource("4_log")
+
+[node name="LogArea" type="Area2D" parent="."]
+position = Vector2(540, 398)
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LogArea"]
+shape = SubResource("RectangleShape2D_log")
+
+[node name="PNGBox" type="RigidBody2D" parent="." groups=["push_box"]]
+z_index = 5
+position = Vector2(152, 552)
+collision_layer = 0
+collision_mask = 0
+mass = 1.0
+physics_material_override = SubResource("PhysicsMaterial_png")
+gravity_scale = 0.0
+continuous_cd = 1
+contact_monitor = true
+max_contacts_reported = 8
+lock_rotation = true
+linear_damp = 0.6
+can_sleep = true
+freeze = true
+script = ExtResource("8_push_box")
+gravity_manager_path = NodePath("../GravityManager")
+requires_interact_push = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PNGBox"]
+shape = SubResource("RectangleShape2D_png")
+
+[node name="Visual" type="Sprite2D" parent="PNGBox"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_png")
+
+[node name="InteractionArea" type="Area2D" parent="PNGBox"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PNGBox/InteractionArea"]
+shape = SubResource("RectangleShape2D_png_interaction")
+
+[node name="ReturnArea" type="Area2D" parent="."]
+position = Vector2(560, 612)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ReturnArea"]
+shape = SubResource("RectangleShape2D_return")
+
+[node name="Visual" type="Sprite2D" parent="ReturnArea"]
+visible = false
+z_index = 4
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("5_return")
+
+[node name="Player" parent="." instance=ExtResource("6_player")]
+z_index = 10
+position = Vector2(535, 610)
+collision_layer = 2
+collision_mask = 5
+jump_velocity = 630.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(540, 540)
+position_smoothing_enabled = false
+ignore_rotation = false
+
+[node name="GravityManager" type="Node" parent="."]
+script = ExtResource("7_gravity")
+camera_path = NodePath("../Camera2D")
+ui_root_path = NodePath("../HUD/UIRoot")
+rotation_direction = -1
+
+[node name="HUD" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="UIRoot" type="Control" parent="HUD"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PreviewPanel" type="Panel" parent="HUD/UIRoot"]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -190.0
+offset_top = 88.0
+offset_right = 190.0
+offset_bottom = 254.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_preview")
+
+[node name="Title" type="Label" parent="HUD/UIRoot/PreviewPanel"]
+offset_left = 20.0
+offset_top = 18.0
+offset_right = 360.0
+offset_bottom = 86.0
+theme_override_colors/font_color = Color(1, 0.9, 0.42, 1)
+theme_override_font_sizes/font_size = 42
+text = "PREVIEW"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Status" type="Label" parent="HUD/UIRoot/PreviewPanel"]
+offset_left = 20.0
+offset_top = 92.0
+offset_right = 360.0
+offset_bottom = 142.0
+theme_override_colors/font_color = Color(1, 0.94, 0.68, 1)
+theme_override_font_sizes/font_size = 25
+text = "PNG 已选中，LOG 已出现"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RepairPanel" type="Panel" parent="HUD/UIRoot"]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -430.0
+offset_top = 247.0
+offset_right = -90.0
+offset_bottom = 417.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_repair")
+
+[node name="Title" type="Label" parent="HUD/UIRoot/RepairPanel"]
+offset_left = 14.0
+offset_top = 16.0
+offset_right = 326.0
+offset_bottom = 73.0
+theme_override_colors/font_color = Color(1, 0.9, 0.42, 1)
+theme_override_font_sizes/font_size = 34
+text = "REPAIRING"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Progress" type="ProgressBar" parent="HUD/UIRoot/RepairPanel"]
+offset_left = 24.0
+offset_top = 96.0
+offset_right = 316.0
+offset_bottom = 132.0
+theme_override_styles/background = SubResource("StyleBoxFlat_progress_background")
+theme_override_styles/fill = SubResource("StyleBoxFlat_progress_fill")
+show_percentage = false
+
+[node name="HintLabel" type="Label" parent="HUD/UIRoot"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -700.0
+offset_top = -98.0
+offset_right = 700.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.98, 0.98, 0.98, 1)
+theme_override_colors/font_outline_color = Color(0.01, 0.015, 0.02, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 27
+text = "空格旋转场景，让左平台上的 PNG 掉下来"
+horizontal_alignment = 1
+vertical_alignment = 1

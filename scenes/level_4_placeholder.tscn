@@ -1,0 +1,41 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/level_4_placeholder.gd" id="1_level"]
+
+[node name="Level4Placeholder" type="Node2D"]
+script = ExtResource("1_level")
+
+[node name="Backdrop" type="Polygon2D" parent="."]
+color = Color(0.015, 0.02, 0.028, 1)
+polygon = PackedVector2Array(-1000, -1000, 2080, -1000, 2080, 2080, -1000, 2080)
+
+[node name="Frame" type="Line2D" parent="."]
+points = PackedVector2Array(190, 260, 890, 260, 890, 820, 190, 820, 190, 260)
+width = 8.0
+default_color = Color(0.15, 0.78, 1, 0.92)
+
+[node name="Title" type="Label" parent="."]
+offset_left = 190.0
+offset_top = 330.0
+offset_right = 890.0
+offset_bottom = 440.0
+theme_override_colors/font_color = Color(0.8, 0.96, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 54
+text = "第四关制作中"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hint" type="Label" parent="."]
+offset_left = 190.0
+offset_top = 525.0
+offset_right = 890.0
+offset_bottom = 610.0
+theme_override_colors/font_color = Color(0.9, 0.92, 0.95, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 28
+text = "按 E 或 Esc 返回主界面"
+horizontal_alignment = 1
+vertical_alignment = 1

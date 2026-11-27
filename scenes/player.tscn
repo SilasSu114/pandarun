@@ -75,7 +75,9 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PushSensor"]
 shape = SubResource("RectangleShape2D_push_sensor")
 
-[node name="Visual" type="AnimatedSprite2D" parent="."]
+[node name="VisualPivot" type="Node2D" parent="."]
+
+[node name="Visual" type="AnimatedSprite2D" parent="VisualPivot"]
 position = Vector2(0, 0)
 centered = false
 offset = Vector2(-32.54, -59.32)

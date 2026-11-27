@@ -8,6 +8,7 @@ const SUPPORT_HOLD_SECONDS := 0.08
 @export var gravity_manager_path: NodePath
 @export var box_id := 1
 @export var hold_position_when_supported_by_player := false
+@export var requires_interact_push := false
 
 var _gravity_manager: Node
 var gravity_direction := Vector2.DOWN

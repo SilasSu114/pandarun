@@ -76,8 +76,15 @@ func _on_condition_body_entered(body: Node2D) -> void:
 		return
 
 	_condition_collected = true
-	condition_bit_visual.modulate = Color(1.0, 1.0, 1.0, 0.0)
-	condition_card_visual.modulate = Color(1.0, 1.0, 1.0, 0.0)
+	condition_bit_visual.visible = false
+	condition_card_visual.visible = false
+	condition_frame_body.visible = false
+	condition_frame_body.collision_layer = 0
+	condition_frame_body.collision_mask = 0
+	for child in condition_frame_body.get_children():
+		if child is CollisionShape2D:
+			child.set_deferred("disabled", true)
+	condition_area.set_deferred("monitoring", false)
 	exit_visual.visible = true
 	hint_label.text = "已获得通关目标：再次旋转场景，然后走向左侧出口"
 	if exit_area.get_overlapping_bodies().has(player):

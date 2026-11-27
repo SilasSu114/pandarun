@@ -48,8 +48,24 @@ func _run() -> void:
 	_check(level._tutorial_started, "玩家进入第一块障碍物下方后触发教学")
 	_check(level.background_mono.visible, "教学开始后切换黑白背景")
 	_check(level.scan_beam.visible, "教学开始后显示光束")
-	level._finish_tutorial()
+	_check(
+		is_equal_approx(level._beam_offset, 430.0) and level._beam_direction < 0.0,
+		"教学从画面上侧开始向左扫描"
+	)
+	await create_timer(level.TUTORIAL_DURATION + 0.1).timeout
+	_check(not level._tutorial_running, "教学扫描按预期结束")
 	_check(level.gravity_manager.rotation_unlocked, "教学结束后解锁旋转")
+	var offset_at_tutorial_end: float = level._beam_offset
+	_check(
+		offset_at_tutorial_end < 0.0
+		and level._beam_direction > 0.0,
+		"教学结束后激光从左侧继续回扫"
+	)
+	await create_timer(0.1).timeout
+	_check(
+		level._beam_offset > offset_at_tutorial_end,
+		"教学结束后不会瞬移回右侧重新扫描"
+	)
 
 	level._beam_offset = -180.0
 	level._update_beam_transform()
@@ -155,6 +171,9 @@ func _run() -> void:
 
 	level._on_exit_body_entered(level.player)
 	await create_timer(1.3).timeout
-	_check(current_scene != null and current_scene.name == "MainMenu", "第二关通关后返回主菜单")
+	_check(
+		current_scene != null and current_scene.name == "Level3",
+		"第二关通关后进入第三关表世界"
+	)
 
 	quit(_failures)

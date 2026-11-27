@@ -183,6 +183,7 @@ func _fit_background(vp: Vector2) -> void:
 
 
 func _on_start_pressed() -> void:
+	LevelRouter.reset_progress()
 	LevelRouter.goto_scene("res://scenes/level_1.tscn")
 
 
